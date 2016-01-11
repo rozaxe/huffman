@@ -63,10 +63,20 @@ void test_create_writer() {
 }
 
 void test_write_byte() {
-	int error = write_byte('H');
+	int error = write_byte('4');
 
 	if (error != 0) {
 		fail("Error happens when writing byte");
+	}
+}
+
+void test_write_bits_and_byte() {
+	int error = write_bit(0);
+	error = error | write_bit(0);
+	error = error | write_byte(200);
+
+	if (error != 0) {
+		fail("Error happens when writing bits and byte");
 	}
 }
 
@@ -77,7 +87,8 @@ void(*all_tests[])(void) = {
 	&test_read_two_bits,
 	&test_read_next_byte,
 	&test_create_writer,
-	&test_write_byte
+	&test_write_byte,
+	&test_write_bits_and_byte
 };
 
 int main() {

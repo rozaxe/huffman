@@ -9,6 +9,8 @@ static int input_buffer_size;
 static char* input_filename = "input.txt";
 
 static FILE* output;
+static int output_buffer;
+static int output_buffer_size;
 
 static char* output_filename = "output.bin";
 
@@ -71,6 +73,8 @@ int read_bit() {
 
 int create_writer() {
 	output = fopen(output_filename, "w");
+	output_buffer = 0;
+	output_buffer_size = 0;
 
 	if (output == NULL) {
 		return 1; // Error while opening file
@@ -83,7 +87,19 @@ int delete_writer() {
 }
 
 int write_byte(int byte) {
-	int code = fputc(byte, output);
+	int character;
+
+	// Add byte to buffer
+	output_buffer = (output_buffer << 8) | byte;
+
+	// Get first byte from buffer
+	character = output_buffer >> output_buffer_size;
+
+	// Keep unused bits
+	output_buffer = output_buffer & ((1 << output_buffer_size) - 1);
+
+	// Append byte to file
+	int code = fputc(character, output);
 
 	if (code == EOF) {
 		return 1; // Error while writing
@@ -92,5 +108,21 @@ int write_byte(int byte) {
 }
 
 int write_bit(int bit) {
-	return 1;
+	// Add bit to buffer
+	++output_buffer_size;
+	output_buffer = (output_buffer << 1) | bit;
+
+	// Flush buffer if full
+	if (output_buffer_size == 8) {
+		int code = fputc(output_buffer, output);
+
+		if (code == EOF) {
+			return 1; // Error
+		}
+
+		// Reset buffer
+		output_buffer = 0;
+		output_buffer_size = 0;
+	}
+	return 0;
 }
