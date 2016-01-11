@@ -43,7 +43,7 @@ int read_byte() {
 
 int read_bit() {
 	// Store bit
-	int bit; 
+	int bit;
 
 	if (input_buffer_size == 0) {
 		// Add next byte to buffer
@@ -64,4 +64,3 @@ int read_bit() {
 
 	return bit;
 }
-

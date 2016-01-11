@@ -12,7 +12,7 @@ int delete_reader();
 // Return the next byte read from the file
 int read_byte();
 
-// Return the next bit read from the file 
+// Return the next bit read from the file
 int read_bit();
 
 /*

@@ -15,7 +15,7 @@ void fail(char *message) {
 }
 
 /*
- * Tests 
+ * Tests
  */
 
 void test_create_reader() {
