@@ -80,6 +80,16 @@ void test_write_bits_and_byte() {
 	}
 }
 
+void test_flush_on_end() {
+	write_bit(0);
+	write_bit(0);
+	write_bit(1);
+	write_bit(0);
+	write_bit(1);
+
+	delete_writer();
+}
+
 // Just add the test function here for running it
 void(*all_tests[])(void) = {
 	&test_create_reader,
@@ -88,7 +98,8 @@ void(*all_tests[])(void) = {
 	&test_read_next_byte,
 	&test_create_writer,
 	&test_write_byte,
-	&test_write_bits_and_byte
+	&test_write_bits_and_byte,
+	&test_flush_on_end
 };
 
 int main() {

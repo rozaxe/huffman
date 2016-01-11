@@ -83,7 +83,17 @@ int create_writer() {
 }
 
 int delete_writer() {
-	return 0;
+	// Flush remaining bits in buffer
+	if (output_buffer_size > 0) {
+		write_byte(0);
+	}
+
+	// Close file
+	int error = fclose(output);
+	if (error == EOF) {
+		return 1; // Error
+	}
+	return 0; // Success
 }
 
 int write_byte(int byte) {
