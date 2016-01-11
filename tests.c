@@ -34,10 +34,32 @@ void test_read_a_byte() {
 	}
 }
 
+void test_read_two_bits() {
+	int bit1 = read_bit();
+	int bit2 = read_bit();
+
+	if (bit1 != 0) {
+		fail("Next bit not 0 !");
+	}
+	if (bit2 != 1) {
+		fail("Next next bit not 1 !");
+	}
+}
+
+void test_read_next_byte() {
+	int byte = read_byte();
+
+	if (byte != 149) {
+		fail("Next byte is wrong !");
+	}
+}
+
 // Just add the test function here for running it
 void(*all_tests[])(void) = {
 	&test_create_reader,
-	&test_read_a_byte
+	&test_read_a_byte,
+	&test_read_two_bits,
+	&test_read_next_byte
 };
 
 int main() {
