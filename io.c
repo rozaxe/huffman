@@ -26,7 +26,12 @@ int create_reader() {
 }
 
 int delete_reader() {
-	return 0;
+	// Close file
+	int error = fclose(input);
+	if (error == EOF) {
+		return 1; // Error
+	}
+	return 0; // Success
 }
 
 int read_byte() {
