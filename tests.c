@@ -54,12 +54,30 @@ void test_read_next_byte() {
 	}
 }
 
+void test_create_writer() {
+	int error = create_writer();
+
+	if (error == 1) {
+		fail("Error while opening file for writing !");
+	}
+}
+
+void test_write_byte() {
+	int error = write_byte('H');
+
+	if (error != 0) {
+		fail("Error happens when writing byte");
+	}
+}
+
 // Just add the test function here for running it
 void(*all_tests[])(void) = {
 	&test_create_reader,
 	&test_read_a_byte,
 	&test_read_two_bits,
-	&test_read_next_byte
+	&test_read_next_byte,
+	&test_create_writer,
+	&test_write_byte
 };
 
 int main() {

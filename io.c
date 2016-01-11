@@ -8,6 +8,10 @@ static int input_buffer_size;
 
 static char* input_filename = "input.txt";
 
+static FILE* output;
+
+static char* output_filename = "output.bin";
+
 int create_reader() {
 	input = fopen(input_filename, "r");
 	input_buffer = 0;
@@ -63,4 +67,30 @@ int read_bit() {
 	input_buffer = input_buffer & ((1 <<input_buffer_size) - 1);
 
 	return bit;
+}
+
+int create_writer() {
+	output = fopen(output_filename, "w");
+
+	if (output == NULL) {
+		return 1; // Error while opening file
+	}
+	return 0; // File opens
+}
+
+int delete_writer() {
+	return 0;
+}
+
+int write_byte(int byte) {
+	int code = fputc(byte, output);
+
+	if (code == EOF) {
+		return 1; // Error while writing
+	}
+	return 0; // Successful writing
+}
+
+int write_bit(int bit) {
+	return 1;
 }
