@@ -1,4 +1,10 @@
 
-int main() {
-    return 0;
+#include "huffman.h"
+
+void compress() {
+
+}
+
+void uncompress() {
+
 }
