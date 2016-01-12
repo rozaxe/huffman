@@ -19,7 +19,7 @@ typedef struct self {
 } Tree;
 
 // Return a new struct as a leaf
-Tree* new_leaf(int character);
+Tree* new_leaf(int);
 
 // Return a new struct as a node
 Tree* new_node(Tree*, Tree*);
