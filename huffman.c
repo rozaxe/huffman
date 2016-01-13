@@ -129,6 +129,29 @@ void path_from(Tree* point) {
     }
 }
 
+// Read direction from input until reaching a leaf
+Tree* goto_leaf() {
+	Tree* current = root;
+
+	// For each node, go down
+	while (current->is_node == 1) {
+
+		int dir = read_bit();
+
+		if (dir == 0) {
+			// Left
+			current = current->left;
+		} else {
+			// Right
+			current = current->right;
+		}
+
+	}
+
+	// Return leaf
+	return current;
+}
+
 // Write path in reverse to ouput
 // root -> point
 void write_path_inverse() {
@@ -173,4 +196,22 @@ void compress() {
 
 void uncompress() {
 
+	init();
+
+	// Leaf pointer
+	Tree* leaf;
+
+	// Get first leaf
+	leaf = goto_leaf();
+
+	// Do something until virtual EOF reached
+	while (leaf != my_eof) {
+		// TODO
+	}
+
+	// Virtual EOF reached
+	destroy();
+
+	// Uncompression done
 }
+
