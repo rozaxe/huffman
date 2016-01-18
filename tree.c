@@ -32,3 +32,24 @@ Tree* new_node(Tree* left, Tree* right) {
     node->right = right;
     return node;
 }
+
+void swap_in_tree(Tree* recto, Tree* verso) {
+    Tree* recto_parent = recto->parent;
+    Tree* verso_parent = verso->parent;
+
+    // Swap children
+    if (recto_parent->left == recto) {
+        recto_parent->left = verso;
+    } else {
+        recto_parent->right = verso;
+    }
+    if (verso_parent->left == verso) {
+        verso_parent->left = recto;
+    } else {
+        verso_parent->right = recto;
+    }
+
+    // Swap parent
+    recto->parent = verso_parent;
+    verso->parent = recto_parent;
+}

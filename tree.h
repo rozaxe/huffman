@@ -23,3 +23,7 @@ Tree* new_leaf(int);
 
 // Return a new struct as a node
 Tree* new_node(Tree*, Tree*);
+
+// Swap two point in tree
+// !!! Do not check if points are related
+void swap_in_tree(Tree*, Tree*);
