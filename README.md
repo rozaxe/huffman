@@ -12,7 +12,7 @@ This is a school project for *Polytech Marseille*.
 
 This module handles operations onto files.
 
-It is used to read from file and write onto file. An important part is that it is able to write and read one bit at a time in a seamless way for other module.
+It is used to read from file and write to file. An important part is that it is able to write and read one bit at a time in a seamless way for other module.
 
 #### Reading
 
@@ -26,7 +26,7 @@ int create_reader()
 
 Return `1` on error, `0` otherwise.
 
-
+---
 
 After that, the following functions can be called to perfom reading operations
 
@@ -36,7 +36,7 @@ int read_byte()
 
 Return the next byte readed from file. The value can be a number in `[0, 256[` or `EOF`.
 
-
+---
 
 ``` c
 int read_bit()
@@ -44,7 +44,7 @@ int read_bit()
 
 Return the next bit readed from file. The value can be a number in `[0, 1]` or `EOF`.
 
-
+---
 
 At the end, the following function must be called to terminate reading.
 
@@ -68,7 +68,7 @@ int create_writer()
 
 Return `1` on error, `0` otherwise.
 
-
+---
 
 After that, the following functions can be called to perfom writing operations
 
@@ -80,7 +80,7 @@ int write_byte(int byte)
 
 Return `1` on error, `0` otherwise.
 
-
+---
 
 ``` c
 int write_bit(int bit)
@@ -90,7 +90,7 @@ int write_bit(int bit)
 
 Return `1` on error, `0` otherwise.
 
-
+---
 
 At the end, the following function must be called to terminate writing.
 
