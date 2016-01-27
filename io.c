@@ -14,6 +14,10 @@ static int output_buffer;
 static int output_buffer_size;
 static char* output_filename = "output.file";
 
+void set_input(char* name) {
+	input_filename = name;
+}
+
 int create_reader() {
 	// Open file
 	input = fopen(input_filename, "r");
@@ -75,6 +79,10 @@ int read_bit() {
 	input_buffer = input_buffer & ((1 << input_buffer_size) - 1);
 
 	return bit;
+}
+
+void set_output(char* name) {
+	output_filename = name;
 }
 
 int create_writer() {
