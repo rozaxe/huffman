@@ -19,7 +19,7 @@ Tree* my_eof;
 Tree* root;
 
 // Store all point to Huffman tree orded by Gallager
-Tree* gallager[517] = {0}; // 517 is the max numbers of point in a Huffman tree
+Tree* gallager[515] = {0}; // 515 is the max numbers of point in a Huffman tree
 
 // Store Gallager array size
 int gallager_size;
