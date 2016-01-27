@@ -9,6 +9,7 @@
 
 int count = 0;
 
+// Output a message and exit with an error
 void fail(char *message) {
 	printf("%s\n", message);
 	exit(1);
@@ -115,6 +116,7 @@ int main() {
 		++count;
 	}
 
+	// All tests passed !
 	printf("Tests passed : %d\n", count);
 
 	return 0;

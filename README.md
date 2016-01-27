@@ -1,6 +1,6 @@
 # Dynamic Huffman coding
 
-![Version](https://img.shields.io/badge/version-1.0.0-brightgreen.svg)
+![Version](https://img.shields.io/badge/version-1.0.1-brightgreen.svg)
 
 This program aims to compress file using *dynamic Huffman coding*.
 
@@ -16,7 +16,7 @@ It is used to read from file and write to file. An important part is that it is 
 
 #### Reading
 
-The module reads from file `./input.txt`
+The module reads from file `./input.file`
 
 At the begining, the following function must be called to initialize reading.
 
@@ -58,7 +58,7 @@ Return `1` on error, `0` otherwise.
 
 #### Writing
 
-The module writes to file `./output.bin`
+The module writes to file `./output.file`
 
 At the begining, the following function must be called to initialize writing.
 

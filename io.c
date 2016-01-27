@@ -2,19 +2,20 @@
 #include <stdio.h>
 #include "io.h"
 
+// Variables for handling input file
 static FILE* input;
 static int input_buffer;
 static int input_buffer_size;
+static char* input_filename = "input.file";
 
-static char* input_filename = "input.txt";
-
+// Variables for handling output file
 static FILE* output;
 static int output_buffer;
 static int output_buffer_size;
-
-static char* output_filename = "output.bin";
+static char* output_filename = "output.file";
 
 int create_reader() {
+	// Open file
 	input = fopen(input_filename, "r");
 	input_buffer = 0;
 	input_buffer_size = 0;
@@ -22,7 +23,7 @@ int create_reader() {
 	if (input == NULL) {
 		return 1; // Error while opening file
 	}
-	return 0; // File opens
+	return 0; // File is opened
 }
 
 int delete_reader() {
@@ -71,12 +72,13 @@ int read_bit() {
 	// Consume a bit from buffer
 	--input_buffer_size;
 	bit = (input_buffer & (1 << input_buffer_size)) >> input_buffer_size;
-	input_buffer = input_buffer & ((1 <<input_buffer_size) - 1);
+	input_buffer = input_buffer & ((1 << input_buffer_size) - 1);
 
 	return bit;
 }
 
 int create_writer() {
+	// Open file
 	output = fopen(output_filename, "w");
 	output_buffer = 0;
 	output_buffer_size = 0;
@@ -84,7 +86,7 @@ int create_writer() {
 	if (output == NULL) {
 		return 1; // Error while opening file
 	}
-	return 0; // File opens
+	return 0; // File is opened
 }
 
 int delete_writer() {
@@ -119,7 +121,7 @@ int write_byte(int byte) {
 	if (code == EOF) {
 		return 1; // Error while writing
 	}
-	return 0; // Successful writing
+	return 0; // Success
 }
 
 int write_bit(int bit) {
@@ -132,12 +134,12 @@ int write_bit(int bit) {
 		int code = fputc(output_buffer, output);
 
 		if (code == EOF) {
-			return 1; // Error
+			return 1; // Error while writing
 		}
 
 		// Reset buffer
 		output_buffer = 0;
 		output_buffer_size = 0;
 	}
-	return 0;
+	return 0; // Success
 }
