@@ -6,6 +6,9 @@
 // Set filename of input file to open
 void set_input(char*);
 
+// Return input filename
+char* get_input();
+
 // Call this fonction before reading
 int create_reader();
 
@@ -24,6 +27,9 @@ int read_bit();
 
 // Set filename of output file to open
 void set_output(char*);
+
+// Return ouput filename
+char* get_output();
 
 // Call this function before writing
 int create_writer();

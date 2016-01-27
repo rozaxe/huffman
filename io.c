@@ -18,6 +18,10 @@ void set_input(char* name) {
 	input_filename = name;
 }
 
+char* get_input() {
+	return input_filename;
+}
+
 int create_reader() {
 	// Open file
 	input = fopen(input_filename, "r");
@@ -83,6 +87,10 @@ int read_bit() {
 
 void set_output(char* name) {
 	output_filename = name;
+}
+
+char* get_output() {
+	return output_filename;
 }
 
 int create_writer() {
