@@ -9,7 +9,7 @@ static void helper() {
     printf("\
 Dynamic Huffman Coding - v1.0.1\n\
 \n\
-Usage: huffman (-h | <output_file> (-c|-u) <input_file>)\n\
+Usage: huffman [-h] [<output_file> (-c|-u) <input_file>]\n\
   -c, --compress    Compress specified file\n\
   -u, --uncompress  Uncompress specified file\n\
   -h, --help        Display this message\n\
