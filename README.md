@@ -1,6 +1,6 @@
 # Dynamic Huffman coding
 
-![Version](https://img.shields.io/badge/version-1.0.1-brightgreen.svg)
+![Version](https://img.shields.io/badge/version-2.0.0-brightgreen.svg)
 
 This program aims to compress file using *dynamic Huffman coding*.
 
@@ -22,7 +22,7 @@ $ huffman original.bin -u compressed.bin
 
 ``` shell
 $ huffman --help
-Dynamic Huffman Coding - v1.0.1
+Dynamic Huffman Coding - v2.0.0
 
 Usage: huffman [-h] [<output_file> (-c|-u) <input_file>]
   -c, --compress    Compress specified file
