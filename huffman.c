@@ -1,6 +1,8 @@
 
+#include <errno.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "huffman.h"
 #include "tree.h"
 #include "io.h"
@@ -80,13 +82,13 @@ void init() {
     // Open files
     error = create_reader();
     if (error != 0) {
-        printf("Error occuired while creating reader !\n");
+        fprintf(stderr, "%s: %s\n", get_input(), strerror(errno));
         exit(1);
     }
 
     error = create_writer();
     if (error != 0) {
-        printf("Error occuired while creating writer !\n");
+        fprintf(stderr, "%s: %s\n", get_output(), strerror(errno));
         exit(2);
     }
 
