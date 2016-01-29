@@ -9,6 +9,12 @@ void set_input(char*);
 // Return input filename
 char* get_input();
 
+// Return size (in bytes) of input file
+off_t get_input_size();
+
+// Return the head progression (in bytes) in input file
+off_t get_input_current();
+
 // Call this fonction before reading
 int create_reader();
 
@@ -30,6 +36,9 @@ void set_output(char*);
 
 // Return ouput filename
 char* get_output();
+
+// Return the head progression (in bytes) in output file
+off_t get_output_current();
 
 // Call this function before writing
 int create_writer();
