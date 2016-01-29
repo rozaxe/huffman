@@ -12,28 +12,34 @@
  */
 
 // Store unknow leaf
-Tree* unknow;
+static Tree* unknow;
 
 // Store virtual EOF
-Tree* my_eof;
+static Tree* my_eof;
 
 // Store root to Huffman tree
-Tree* root;
+static Tree* root;
 
 // Store all point to Huffman tree orded by Gallager
-Tree* gallager[515] = {0}; // 515 is the max numbers of point in a Huffman tree
+static Tree* gallager[515] = {0}; // 515 is the max numbers of point in a Huffman tree
 
 // Store Gallager array size
-int gallager_size;
+static int gallager_size;
 
 // Store all ASCII leaf
-Tree* ascii[256] = {NULL};
+static Tree* ascii[256] = {NULL};
 
 // Store path to a point
-int path[257] = {0};
+static int path[257] = {0};
 
 // Store path array size
-int path_size;
+static int path_size;
+
+// The Update Function That Do Nothing
+static void nothing() {
+    // Yep, nothing
+}
+static void(*update)() = &nothing;
 
 /*
  * Private functions
@@ -42,7 +48,7 @@ int path_size;
 /* Initialization & Destruction */
 
 // Initialize variables
-void init_variables() {
+static void init_variables() {
     /* Tree */
     unknow = new_leaf('?');
     my_eof = new_leaf('0');
@@ -76,7 +82,7 @@ void init_variables() {
 }
 
 // Initialize everything
-void init() {
+static void init() {
     int error;
 
     // Open files
@@ -97,7 +103,7 @@ void init() {
 }
 
 // Close files
-void destroy() {
+static void destroy() {
     // Close files
     delete_reader();
     delete_writer();
@@ -109,7 +115,7 @@ void destroy() {
 
 // Fill the path with direction (left 0 / right 1) to retrieve root
 // point -> root
-void path_from(Tree* point) {
+static void path_from(Tree* point) {
     Tree* current = point;
     path_size = 0;
 
@@ -138,7 +144,7 @@ void path_from(Tree* point) {
 }
 
 // Read direction from input until reaching a leaf
-Tree* goto_leaf() {
+static Tree* goto_leaf() {
 	Tree* current = root;
 
 	// For each node, go down
@@ -162,7 +168,7 @@ Tree* goto_leaf() {
 
 // Write path in reverse to ouput
 // root -> point
-void write_path_inverse() {
+static void write_path_inverse() {
     // Index
     int i;
 
@@ -179,7 +185,7 @@ void write_path_inverse() {
 }
 
 //// Array
-void swap_in_gallager(Tree* recto, Tree* verso) {
+static void swap_in_gallager(Tree* recto, Tree* verso) {
     // Tree index
     int i = recto->index;
     int j = verso->index;
@@ -195,7 +201,7 @@ void swap_in_gallager(Tree* recto, Tree* verso) {
 }
 
 // Check if the leaf tagged with c is already present in tree
-int already_added(int c) {
+static int already_added(int c) {
     if (ascii[c] == NULL) {
         return 0; // Not present
     } else {
@@ -204,7 +210,7 @@ int already_added(int c) {
 }
 
 // Return higher point in gallager with same weight
-Tree* higher_point_with_same_weight(Tree* point) {
+static Tree* higher_point_with_same_weight(Tree* point) {
     int index = point->index;
 
     Tree* previous = gallager[index];
@@ -226,7 +232,7 @@ Tree* higher_point_with_same_weight(Tree* point) {
 //// Tree
 
 // Create a parent on top of unknow with a new leaf
-void add_char(int c) {
+static void add_char(int c) {
     // New leaf
     Tree* leaf = new_leaf(c);
 
@@ -261,7 +267,7 @@ void add_char(int c) {
 }
 
 // Fatten a point
-void increment(Tree* point) {
+static void increment(Tree* point) {
 
     // Look for higher point with same weight
     Tree* higher = higher_point_with_same_weight(point);
@@ -277,7 +283,7 @@ void increment(Tree* point) {
 }
 
 // Fatten a leaf and all of its parents
-void increment_from(Tree* leaf) {
+static void increment_from(Tree* leaf) {
     Tree* current = leaf;
 
     // Fatten each point
@@ -302,6 +308,7 @@ void compress() {
     // A byte is in [0, 255[
     int byte;
 
+    (*update)(); // First update
     // Read byte
     byte = read_byte();
 
@@ -336,6 +343,8 @@ void compress() {
             // Increase from grand parent
             increment_from(unknow->parent->parent);
         }
+
+        (*update)(); // Update
 
         // Read next byte
         byte = read_byte();
@@ -389,4 +398,8 @@ void uncompress() {
 	destroy();
 
 	// Uncompression done
+}
+
+void set_update(void(*new_update)()) {
+    update = new_update;
 }
