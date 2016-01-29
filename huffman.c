@@ -365,6 +365,8 @@ void uncompress() {
 	// Leaf pointer
 	Tree* leaf;
 
+    (*update)(); // Update
+
 	// Get first leaf
 	leaf = goto_leaf();
 
@@ -392,6 +394,8 @@ void uncompress() {
 
         // Next leaf
         leaf = goto_leaf();
+
+        (*update)(); // Update
 	}
 
 	// Virtual EOF reached
