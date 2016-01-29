@@ -36,7 +36,7 @@ static int path[257] = {0};
 static int path_size;
 
 // The Update Function That Do Nothing
-static void nothing() {
+void nothing() {
     // Yep, nothing
 }
 static void(*update)() = &nothing;

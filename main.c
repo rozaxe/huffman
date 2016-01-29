@@ -13,9 +13,10 @@ static void helper() {
     printf("\
 Dynamic Huffman Coding - v2.0.0\n\
 \n\
-Usage: huffman [-h] [<output_file> (-c|-u) <input_file>]\n\
+Usage: huffman [-h] [ [-s] <output_file> (-c|-u) <input_file> ]\n\
   -c, --compress    Compress specified file\n\
   -u, --uncompress  Uncompress specified file\n\
+  -s, --silent      Do not show progression and comparison\n\
   -h, --help        Display this message\n\
 ");
 }
@@ -76,11 +77,14 @@ int main(int argc, char *argv[]) {
                 // Where to find compress/uncompress option
                 int look_at = 2;
 
-                // Verbose mode
-                int verbose = 0;
-                if (strcmp(argv[1], "-v") == 0 || strcmp(argv[1], "--verbose") == 0) {
-                    set_update(&update);
-                    verbose = 1;
+                // Verbose by default
+                int verbose = 1;
+                set_update(&update);
+
+                // Check if
+                if (strcmp(argv[1], "-s") == 0 || strcmp(argv[1], "--silent") == 0) {
+                    set_update(&nothing);
+                    verbose = 0; // Silent
                     ++look_at; // Shift operand by one
                 }
 

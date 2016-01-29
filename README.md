@@ -24,9 +24,10 @@ $ huffman original.bin -u compressed.bin
 $ huffman --help
 Dynamic Huffman Coding - v2.0.0
 
-Usage: huffman [-h] [<output_file> (-c|-u) <input_file>]
+Usage: huffman [-h] [ [-s] <output_file> (-c|-u) <input_file> ]
   -c, --compress    Compress specified file
   -u, --uncompress  Uncompress specified file
+  -s, --silent      Do not show progression and comparison
   -h, --help        Display this message
 
 ```
