@@ -11,7 +11,7 @@ static int clock = 0;
 // Show how to use program
 static void helper() {
     printf("\
-Dynamic Huffman Coding - v2.0.0\n\
+Dynamic Huffman Coding - v2.1.0\n\
 \n\
 Usage: huffman [-h] [ [-s] <output_file> (-c|-u) <input_file> ]\n\
   -c, --compress    Compress specified file\n\
